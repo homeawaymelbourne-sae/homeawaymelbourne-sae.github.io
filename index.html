@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home Away From Home — Supporting international students in Melbourne</title>
+    <meta name="description" content="An animatic and campaign exploring how international students in Melbourne combat isolation and find community." />
+    <meta property="og:title" content="Home Away From Home" />
+    <meta property="og:description" content="An animatic and campaign exploring how international students in Melbourne combat isolation and find community." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230097b2'/><text x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-weight='700' font-size='22' fill='white'>HAHF</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&display=swap" />
+    <style>
+      :root {
+        --turquoise: #0097b2;
+        --ink: #0a0a0a;
+        --muted: #5b6470;
+        --border: #e2eaf3;
+        --bg: #ffffff;
+        --gradient: linear-gradient(90deg, #a0cefd 0%, #e4f2ff 100%);
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: "Inter", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.6;
+      }
+      a { color: inherit; }
+      .display { font-family: "Fraunces", Georgia, serif; letter-spacing: -0.02em; line-height: 1.05; }
+      .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+      .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 0.3em; color: var(--muted); }
+
+      /* Nav */
+      header.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding: 16px 0; }
+      .nav-inner {
+        display: flex; align-items: center; justify-content: space-between;
+        background: rgba(255,255,255,0.75); backdrop-filter: blur(16px);
+        border: 1px solid var(--border); border-radius: 999px; padding: 10px 20px;
+      }
+      .logo { font-family: "Fraunces", Georgia, serif; font-weight: 600; letter-spacing: 0.18em; color: var(--turquoise); text-decoration: none; }
+      .nav-links { display: none; gap: 4px; list-style: none; margin: 0; padding: 0; }
+      .nav-links a { text-decoration: none; color: var(--muted); padding: 6px 14px; border-radius: 999px; font-size: 14px; }
+      .nav-links a:hover { background: #f1f5fb; color: var(--ink); }
+      .cta { display: none; align-items: center; gap: 6px; background: var(--turquoise); color: white; padding: 9px 18px; border-radius: 999px; text-decoration: none; font-size: 14px; font-weight: 500; }
+      .cta:hover { transform: scale(1.02); }
+      @media (min-width: 768px) { .nav-links, .cta { display: inline-flex; } }
+
+      /* Hero */
+      .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 0 60px; background: var(--gradient); text-align: center; position: relative; overflow: hidden; }
+      .hero h1 { font-size: clamp(48px, 9vw, 104px); margin: 24px 0; }
+      .hero h1 em { color: var(--turquoise); font-style: italic; }
+      .hero p.lead { max-width: 560px; margin: 24px auto; color: #2a3441; font-size: 17px; }
+      .btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+      .btn { padding: 12px 24px; border-radius: 999px; text-decoration: none; font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; }
+      .btn-primary { background: var(--turquoise); color: white; }
+      .btn-secondary { background: rgba(255,255,255,0.7); color: var(--ink); border: 1px solid var(--border); }
+
+      /* Sections */
+      section.block { padding: 120px 0; border-top: 1px solid var(--border); }
+      section.block .head { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+      section.block h2 { font-size: clamp(36px, 5vw, 56px); margin: 16px 0 0; }
+
+      /* Animatic */
+      .video-frame { aspect-ratio: 16/9; border-radius: 24px; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; gap: 16px; box-shadow: 0 30px 80px -40px rgba(0,151,178,0.5); position: relative; overflow: hidden; }
+      .video-frame::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 30% 30%, rgba(0,151,178,0.55), transparent 60%), radial-gradient(circle at 70% 70%, rgba(160,206,253,0.35), transparent 60%); }
+      .video-frame > * { position: relative; }
+      .play { width: 64px; height: 64px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; }
+      .play::after { content: ""; width: 0; height: 0; border-left: 16px solid white; border-top: 10px solid transparent; border-bottom: 10px solid transparent; margin-left: 4px; }
+
+      /* Cause */
+      .cause-grid { display: grid; gap: 40px; grid-template-columns: 1fr; }
+      @media (min-width: 900px) { .cause-grid { grid-template-columns: 7fr 5fr; } }
+      .quote { font-family: "Fraunces", Georgia, serif; font-size: clamp(24px, 3vw, 36px); line-height: 1.2; }
+      .stats { border: 1px solid var(--border); border-radius: 24px; padding: 32px; background: #fafcff; }
+      .stat { margin: 20px 0; }
+      .stat dt { font-family: "Fraunces", Georgia, serif; font-size: 40px; color: var(--turquoise); }
+      .stat dd { margin: 4px 0 0; font-size: 14px; color: var(--muted); }
+
+      /* Support */
+      .grid-cards { display: grid; gap: 16px; grid-template-columns: 1fr; }
+      @media (min-width: 640px) { .grid-cards { grid-template-columns: repeat(2, 1fr); } }
+      @media (min-width: 1024px) { .grid-cards { grid-template-columns: repeat(3, 1fr); } }
+      .card { border: 1px solid var(--border); border-radius: 24px; padding: 24px; background: white; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: transform .2s, border-color .2s, box-shadow .2s; }
+      .card:hover { transform: translateY(-4px); border-color: rgba(0,151,178,0.4); box-shadow: 0 20px 50px -25px rgba(0,151,178,0.3); }
+      .tag { display: inline-block; background: #eaf6fa; color: #034a59; padding: 4px 10px; border-radius: 999px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; width: fit-content; }
+      .card h3 { font-family: "Fraunces", Georgia, serif; font-size: 20px; margin: 16px 0 8px; }
+      .card p { color: var(--muted); font-size: 14px; flex: 1; margin: 0; }
+      .card .contact { margin-top: 16px; color: var(--turquoise); font-weight: 500; font-size: 14px; }
+
+      /* Team */
+      .team-grid { display: grid; gap: 24px; grid-template-columns: 1fr; }
+      @media (min-width: 640px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+      @media (min-width: 1024px) { .team-grid { grid-template-columns: repeat(4, 1fr); } }
+      .member { border: 1px solid var(--border); border-radius: 24px; padding: 20px; background: white; }
+      .avatar { aspect-ratio: 4/5; border-radius: 16px; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-family: "Fraunces", Georgia, serif; font-size: 52px; color: rgba(0,151,178,0.6); }
+      .member h3 { font-family: "Fraunces", Georgia, serif; font-size: 18px; margin: 16px 0 4px; line-height: 1.2; }
+      .member p { margin: 0; color: var(--muted); font-size: 14px; }
+
+      /* Closing */
+      .closing { background: #000; color: white; padding: 140px 0; text-align: center; position: relative; overflow: hidden; }
+      .closing::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(0,151,178,0.45), transparent 60%); }
+      .closing > * { position: relative; }
+      .closing .display { font-size: clamp(36px, 6vw, 72px); margin: 32px 0; }
+      .closing em { color: #a0cefd; font-style: italic; }
+      .closing p.note { max-width: 520px; margin: 0 auto; color: rgba(255,255,255,0.7); }
+      .closing .eyebrow { color: rgba(255,255,255,0.5); }
+
+      footer { padding: 32px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
+      footer .row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    </style>
+  </head>
+  <body>
+    <header class="nav">
+      <div class="container">
+        <div class="nav-inner">
+          <a class="logo" href="#home" aria-label="Home Away From Home">HAHF</a>
+          <nav>
+            <ul class="nav-links">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#animatic">Animatic</a></li>
+              <li><a href="#cause">Our cause</a></li>
+              <li><a href="#support">Find support</a></li>
+              <li><a href="#team">Team</a></li>
+            </ul>
+          </nav>
+          <a class="cta" href="#animatic">Watch the animatic →</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="container">
+          <p class="eyebrow">An animatic by SAE University College, Melbourne</p>
+          <h1 class="display">Home Away<br /><em>From Home</em></h1>
+          <p class="lead">A story about international students arriving in Melbourne — the loneliness no one warns you about, and the quiet ways we find each other again.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#animatic">Watch the animatic →</a>
+            <a class="btn btn-secondary" href="#cause">Why we made this</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="animatic" class="block">
+        <div class="container">
+          <div class="head">
+            <p class="eyebrow">The Animatic</p>
+            <h2 class="display">A short film, in pictures.</h2>
+            <p style="color: var(--muted); margin-top: 16px;">Our animatic is still in production. The video will live here — for now, this is the frame we're holding for it.</p>
+          </div>
+          <div class="video-frame">
+            <div class="play"></div>
+            <p class="display" style="font-size: 22px; margin: 0;">Animatic coming soon</p>
+            <p class="eyebrow" style="color: rgba(255,255,255,0.5);">YouTube embed placeholder</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cause" class="block">
+        <div class="container">
+          <div class="head">
+            <p class="eyebrow">Our cause</p>
+            <h2 class="display">Why we made this.</h2>
+          </div>
+          <div class="cause-grid">
+            <div>
+              <p class="quote">"How can we best support international students moving to Melbourne in combating isolation and finding community?"</p>
+              <p style="color: var(--muted); margin-top: 24px;">More than 200,000 international students choose Melbourne every year. Behind the postcards and orientation week photos, many describe the same quiet experience: culture shock, language anxiety, homesickness, and the strange loneliness of being surrounded by people you don't yet know.</p>
+              <p style="color: var(--muted);">We spoke with peers, read studies from Study Melbourne and Orygen, and listened to stories from across our own classrooms. The animatic distills what we heard — not as a problem to solve, but as a feeling to recognise.</p>
+            </div>
+            <aside class="stats">
+              <p class="eyebrow">From our research</p>
+              <dl>
+                <div class="stat"><dt>1 in 3</dt><dd>international students report severe loneliness in their first year.</dd></div>
+                <div class="stat"><dt>65%</dt><dd>say making local friends is the hardest part of moving abroad.</dd></div>
+                <div class="stat"><dt>200k+</dt><dd>international students study in Victoria each year.</dd></div>
+              </dl>
+              <p style="font-size: 11px; color: var(--muted); margin-top: 16px;">Figures are placeholders pending final citations.</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="support" class="block">
+        <div class="container">
+          <div class="head">
+            <p class="eyebrow">Find support</p>
+            <h2 class="display">You don't have to figure this out alone.</h2>
+            <p style="color: var(--muted); margin-top: 16px;">Real communities, services and helplines in Melbourne and across Australia. Save one. Send one to a friend.</p>
+          </div>
+          <div class="grid-cards">
+            <a class="card" href="https://www.studymelbourne.vic.gov.au/" target="_blank" rel="noopener"><span class="tag">Website</span><h3>Study Melbourne Hub</h3><p>Free in-person and online support for international students — wellbeing, study, work and life in Victoria.</p><span class="contact">studymelbourne.vic.gov.au</span></a>
+            <a class="card" href="tel:131114"><span class="tag">Crisis line</span><h3>Lifeline Australia</h3><p>24/7 crisis support and suicide prevention services, free to call from anywhere in Australia.</p><span class="contact">13 11 14</span></a>
+            <a class="card" href="tel:1300224636"><span class="tag">Helpline</span><h3>Beyond Blue</h3><p>Free, confidential mental health support for anxiety, depression and homesickness.</p><span class="contact">1300 22 4636</span></a>
+            <a class="card" href="https://headspace.org.au/" target="_blank" rel="noopener"><span class="tag">Website</span><h3>headspace</h3><p>Mental health support for young people aged 12–25, including international students.</p><span class="contact">headspace.org.au</span></a>
+            <a class="card" href="mailto:wellbeing@sae.edu.au"><span class="tag">Email</span><h3>SAE Student Wellbeing</h3><p>Counselling, peer support and academic care available to every SAE student.</p><span class="contact">wellbeing@sae.edu.au</span></a>
+            <a class="card" href="https://www.cisa.edu.au/" target="_blank" rel="noopener"><span class="tag">Community</span><h3>Council of Intl. Students Australia</h3><p>Peer-led national body representing and connecting international students.</p><span class="contact">cisa.edu.au</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section id="team" class="block">
+        <div class="container">
+          <div class="head">
+            <p class="eyebrow">The team</p>
+            <h2 class="display">Four students. One question.</h2>
+            <p style="color: var(--muted); margin-top: 16px;">We're a small team from SAE University College, Melbourne — audio engineers, animators, designers, music producers and storytellers who, between us, have moved here from a few different homes.</p>
+          </div>
+          <div class="team-grid">
+            <div class="member"><div class="avatar">AL</div><h3>Ava Leppitsch</h3><p>Foley Artist &amp; Mixing Engineer</p></div>
+            <div class="member"><div class="avatar">TP</div><h3>Tra Pham</h3><p>Animator</p></div>
+            <div class="member"><div class="avatar">KK</div><h3>Kenula Kandana Arachchi</h3><p>Musician, Music Producer &amp; Website Designer</p></div>
+            <div class="member"><div class="avatar">CC</div><h3>Constantine Chavez</h3><p>Musician &amp; Music Producer</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing">
+        <div class="container">
+          <p class="eyebrow">A note from us</p>
+          <p class="display">You're not alone —<br /><em>even when you're home away from home.</em></p>
+          <p class="note">If this story sounds like yours, or someone you love, reach out to one of the services above. Send the link. Sit with it. We made this so you'd know we made it for you.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container row">
+        <p>© <span id="year"></span> Home Away From Home — SAE University College, Melbourne.</p>
+        <a href="#home">Back to top ↑</a>
+      </div>
+    </footer>
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  </body>
+</html>
