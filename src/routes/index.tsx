@@ -31,10 +31,10 @@ const NAV = [
 ];
 
 const TEAM = [
-  { name: "Ava Leppitsch", role: "Animation & Direction" },
-  { name: "Tra Pham", role: "Story & Research" },
-  { name: "Kenula Kandana Arachchi", role: "Design & Web" },
-  { name: "Constantine Chavez", role: "Sound & Production" },
+  { name: "Ava Leppitsch", role: "Foley Artist & Mixing Engineer" },
+  { name: "Tra Pham", role: "Animator" },
+  { name: "Kenula Kandana Arachchi", role: "Musician, Music Producer & Website Designer" },
+  { name: "Constantine Chavez", role: "Musician & Music Producer" },
 ];
 
 const SUPPORT = [
@@ -137,10 +137,10 @@ function Navbar() {
         >
           <a
             href="#home"
-            className="font-display text-base font-medium tracking-tight"
+            className="font-display text-base font-semibold tracking-[0.18em] text-primary"
             aria-label="Home Away From Home — back to top"
           >
-            Home<span className="text-primary">.</span>Away
+            HAHF
           </a>
 
           <nav aria-label="Primary" className="hidden md:block">
