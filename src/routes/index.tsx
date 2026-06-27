@@ -394,8 +394,9 @@ function Team() {
   return (
     <Section id="team" eyebrow="The team" title="Four students. One question.">
       <p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
-        We're a small team from SAE University College, Melbourne — animators, designers and
-        storytellers who, between us, have moved here from a few different homes.
+        We're a small team from SAE University College, Melbourne — audio engineers, animators,
+        designers, music producers and storytellers who, between us, have moved here from a few
+        different homes.
       </p>
 
       <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
