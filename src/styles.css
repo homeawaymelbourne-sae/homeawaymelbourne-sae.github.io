@@ -66,26 +66,32 @@
 :root {
   --radius: 0.75rem;
 
-  /* Warm "home" palette — cream paper, deep ink, dusty terracotta accent */
-  --background: oklch(0.975 0.012 80);
-  --foreground: oklch(0.22 0.025 50);
-  --card: oklch(0.99 0.008 80);
-  --card-foreground: oklch(0.22 0.025 50);
-  --popover: oklch(0.99 0.008 80);
-  --popover-foreground: oklch(0.22 0.025 50);
-  --primary: oklch(0.55 0.14 38);
-  --primary-foreground: oklch(0.985 0.01 80);
-  --secondary: oklch(0.94 0.018 75);
-  --secondary-foreground: oklch(0.28 0.03 50);
-  --muted: oklch(0.93 0.015 75);
-  --muted-foreground: oklch(0.48 0.025 55);
-  --accent: oklch(0.88 0.05 70);
-  --accent-foreground: oklch(0.25 0.03 50);
+  /* Team palette — dark turquoise, white, black, soft blue gradient */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.15 0.01 240);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.01 240);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.01 240);
+  --primary: oklch(0.62 0.13 215);          /* #0097b2 dark turquoise */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.96 0.02 240);        /* soft blue tint */
+  --secondary-foreground: oklch(0.2 0.03 230);
+  --muted: oklch(0.97 0.015 235);
+  --muted-foreground: oklch(0.45 0.02 230);
+  --accent: oklch(0.88 0.06 245);           /* #a0cefd-ish */
+  --accent-foreground: oklch(0.2 0.03 230);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0.01 80);
-  --border: oklch(0.88 0.018 75);
-  --input: oklch(0.88 0.018 75);
-  --ring: oklch(0.55 0.14 38);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0.02 235);
+  --input: oklch(0.9 0.02 235);
+  --ring: oklch(0.62 0.13 215);
+
+  /* Brand tokens */
+  --brand-turquoise: #0097b2;
+  --brand-black: #000000;
+  --brand-white: #ffffff;
+  --gradient-soft-blue: linear-gradient(90deg, #a0cefd 0%, #e4f2ff 100%);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);

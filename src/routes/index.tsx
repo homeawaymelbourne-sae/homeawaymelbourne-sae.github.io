@@ -31,10 +31,10 @@ const NAV = [
 ];
 
 const TEAM = [
-  { name: "Ava Leppitsch", role: "Animation & Direction" },
-  { name: "Tra Pham", role: "Story & Research" },
-  { name: "Kenula Kandana Arachchi", role: "Design & Web" },
-  { name: "Constantine Chavez", role: "Sound & Production" },
+  { name: "Ava Leppitsch", role: "Foley Artist & Mixing Engineer" },
+  { name: "Tra Pham", role: "Animator" },
+  { name: "Kenula Kandana Arachchi", role: "Musician, Music Producer & Website Designer" },
+  { name: "Constantine Chavez", role: "Musician & Music Producer" },
 ];
 
 const SUPPORT = [
@@ -137,10 +137,10 @@ function Navbar() {
         >
           <a
             href="#home"
-            className="font-display text-base font-medium tracking-tight"
+            className="font-display text-base font-semibold tracking-[0.18em] text-primary"
             aria-label="Home Away From Home — back to top"
           >
-            Home<span className="text-primary">.</span>Away
+            HAHF
           </a>
 
           <nav aria-label="Primary" className="hidden md:block">
@@ -212,12 +212,12 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[100dvh] items-center overflow-hidden bg-gradient-to-b from-[oklch(0.97_0.018_75)] via-background to-background pt-28"
+      className="relative flex min-h-[100dvh] items-center overflow-hidden bg-[linear-gradient(90deg,#a0cefd_0%,#e4f2ff_100%)] pt-28"
     >
       {/* Soft ambient glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-40 left-1/2 h-[60rem] w-[60rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,oklch(0.85_0.08_55_/_0.55),transparent_70%)] blur-3xl"
+        className="pointer-events-none absolute -top-40 left-1/2 h-[60rem] w-[60rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(0,151,178,0.25),transparent_70%)] blur-3xl"
       />
 
       <div className="relative mx-auto w-full max-w-5xl px-6 text-center">
@@ -278,13 +278,13 @@ function Animatic() {
       </p>
 
       <div className="mt-12">
-        <div className="group relative aspect-video w-full overflow-hidden rounded-3xl border border-border bg-[oklch(0.18_0.02_50)] shadow-[0_30px_80px_-40px_rgba(80,40,20,0.45)]">
+        <div className="group relative aspect-video w-full overflow-hidden rounded-3xl border border-border bg-black shadow-[0_30px_80px_-40px_rgba(0,151,178,0.45)]">
           {/* Placeholder for upcoming YouTube embed */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,oklch(0.4_0.08_45_/_0.6),transparent_60%),radial-gradient(circle_at_70%_70%,oklch(0.3_0.06_30_/_0.5),transparent_60%)]"
+            className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(0,151,178,0.55),transparent_60%),radial-gradient(circle_at_70%_70%,rgba(160,206,253,0.35),transparent_60%)]"
           />
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-center text-[oklch(0.92_0.01_80)]">
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-center text-white">
             <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur transition-transform group-hover:scale-110">
               <div className="ml-1 h-0 w-0 border-y-[10px] border-l-[16px] border-y-transparent border-l-white/90" />
             </div>
@@ -394,8 +394,9 @@ function Team() {
   return (
     <Section id="team" eyebrow="The team" title="Four students. One question.">
       <p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
-        We're a small team from SAE University College, Melbourne — animators, designers and
-        storytellers who, between us, have moved here from a few different homes.
+        We're a small team from SAE University College, Melbourne — audio engineers, animators,
+        designers, music producers and storytellers who, between us, have moved here from a few
+        different homes.
       </p>
 
       <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -404,12 +405,12 @@ function Team() {
             key={member.name}
             className="group rounded-3xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:shadow-[0_20px_50px_-25px_rgba(80,40,20,0.35)]"
           >
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[oklch(0.9_0.03_70)]">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[linear-gradient(135deg,#a0cefd_0%,#e4f2ff_100%)]">
               <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,oklch(0.95_0.04_70),transparent_60%),radial-gradient(circle_at_70%_80%,oklch(0.78_0.08_45_/_0.6),transparent_60%)]"
+                className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.7),transparent_60%),radial-gradient(circle_at_70%_80%,rgba(0,151,178,0.35),transparent_60%)]"
               />
-              <div className="absolute inset-0 flex items-center justify-center font-display text-5xl text-foreground/30">
+              <div className="absolute inset-0 flex items-center justify-center font-display text-5xl text-primary/60">
                 {member.name
                   .split(" ")
                   .map((n) => n[0])
@@ -434,17 +435,17 @@ function Team() {
 
 function Closing() {
   return (
-    <section className="relative overflow-hidden border-t border-border bg-[oklch(0.18_0.02_50)] py-32 text-[oklch(0.95_0.01_80)]">
+    <section className="relative overflow-hidden border-t border-border bg-black py-32 text-white">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,oklch(0.55_0.14_38_/_0.35),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,151,178,0.45),transparent_60%)]"
       />
       <div className="relative mx-auto max-w-3xl px-6 text-center">
         <p className="text-xs uppercase tracking-[0.3em] text-white/50">A note from us</p>
         <p className="mt-8 font-display text-4xl leading-tight sm:text-6xl">
           You're not alone —
           <br />
-          <span className="italic text-[oklch(0.82_0.1_55)]">
+          <span className="italic text-[#a0cefd]">
             even when you're home away from home.
           </span>
         </p>
