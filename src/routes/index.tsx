@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { ArrowUpRight, Mail, Phone, Globe, Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, Mail, Phone, Globe, Menu, X, Volume2, VolumeX } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -158,24 +158,30 @@ function Navbar() {
             </ul>
           </nav>
 
-          <a
-            href="#animatic"
-            className="hidden items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02] md:inline-flex"
-          >
-            Watch the animatic
-            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-          </a>
+          <div className="hidden items-center gap-2 md:flex">
+            <AmbientAudio />
+            <a
+              href="#animatic"
+              className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
+            >
+              Watch the animatic
+              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
 
-          <button
+          <div className="flex items-center gap-1 md:hidden">
+            <AmbientAudio />
+            <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full text-foreground md:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full text-foreground"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-nav"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+            </button>
+          </div>
         </div>
       </div>
 
