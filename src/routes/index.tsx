@@ -209,31 +209,56 @@ function Navbar() {
 }
 
 function Hero() {
+  const [scrollY, setScrollY] = useState(0);
+  useEffect(() => {
+    const onScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <section
       id="home"
-      className="relative flex min-h-[100dvh] items-center overflow-hidden bg-[linear-gradient(90deg,#a0cefd_0%,#e4f2ff_100%)] pt-28"
+      className="relative flex min-h-[100dvh] items-center overflow-hidden bg-black pt-28"
     >
-      {/* Soft ambient glow */}
+      {/* Parallax + zoom-in background.
+          Drop your image at: public/hero-background.jpg
+          (any name works — just update the url() below to match). */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-40 left-1/2 h-[60rem] w-[60rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(0,151,178,0.25),transparent_70%)] blur-3xl"
+        className="hero-zoom pointer-events-none absolute inset-0 -z-10 bg-[url('/hero-background.jpg')] bg-cover bg-center bg-no-repeat"
+        style={{ transform: `translate3d(0, ${scrollY * 0.35}px, 0) scale(1)` }}
+      />
+      {/* Fallback gradient wash + readability overlay */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(135deg,#DE888D_0%,#C17644_50%,#E9D820_100%)] opacity-[var(--bg-fallback-opacity,0.35)]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/60"
       />
 
-      <div className="relative mx-auto w-full max-w-5xl px-6 text-center">
-        <p className="reveal text-xs uppercase tracking-[0.3em] text-muted-foreground">
+      <div className="relative mx-auto w-full max-w-5xl px-6 text-center text-white">
+        <p
+          className="reveal text-xs uppercase tracking-[0.3em] text-white/80"
+          style={{ animationDelay: "1.2s" }}
+        >
           An animatic by SAE University College, Melbourne
         </p>
 
-        <h1 className="reveal-slow mt-6 font-display text-5xl leading-[0.95] sm:text-7xl md:text-[6.5rem]">
+        <h1
+          className="reveal-slow mt-6 font-display text-5xl leading-[0.95] text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.4)] sm:text-7xl md:text-[6.5rem]"
+          style={{ animationDelay: "1.5s" }}
+        >
           Home Away
           <br />
-          <span className="italic text-primary">From Home</span>
+          <span className="italic text-[#E9D820]">From Home</span>
         </h1>
 
         <p
-          className="reveal mx-auto mt-8 max-w-xl text-balance text-base text-muted-foreground sm:text-lg"
-          style={{ animationDelay: "0.4s" }}
+          className="reveal mx-auto mt-8 max-w-xl text-balance text-base text-white/85 sm:text-lg"
+          style={{ animationDelay: "2s" }}
         >
           A story about international students arriving in Melbourne — the loneliness no one warns
           you about, and the quiet ways we find each other again.
@@ -241,18 +266,18 @@ function Hero() {
 
         <div
           className="reveal mt-10 flex flex-wrap items-center justify-center gap-3"
-          style={{ animationDelay: "0.6s" }}
+          style={{ animationDelay: "2.3s" }}
         >
           <a
             href="#animatic"
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
+            className="inline-flex items-center gap-2 rounded-full bg-[#C17644] px-6 py-3 text-sm font-medium text-white transition-transform hover:scale-[1.02]"
           >
             Watch the animatic
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </a>
           <a
             href="#cause"
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-6 py-3 text-sm font-medium text-foreground backdrop-blur hover:bg-secondary"
+            className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-medium text-white backdrop-blur hover:bg-white/20"
           >
             Why we made this
           </a>
@@ -261,7 +286,7 @@ function Hero() {
 
       <div
         aria-hidden="true"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.3em] text-muted-foreground/70"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.3em] text-white/60"
       >
         Scroll
       </div>
