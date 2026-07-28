@@ -303,11 +303,11 @@ function Animatic() {
       </p>
 
       <div className="mt-12">
-        <div className="group relative aspect-video w-full overflow-hidden rounded-3xl border border-border bg-black shadow-[0_30px_80px_-40px_rgba(0,151,178,0.45)]">
+        <div className="group relative aspect-video w-full overflow-hidden rounded-3xl border border-border bg-black shadow-[0_30px_80px_-40px_rgba(193,118,68,0.45)]">
           {/* Placeholder for upcoming YouTube embed */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(0,151,178,0.55),transparent_60%),radial-gradient(circle_at_70%_70%,rgba(160,206,253,0.35),transparent_60%)]"
+            className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(193,118,68,0.55),transparent_60%),radial-gradient(circle_at_70%_70%,rgba(222,136,141,0.4),transparent_60%)]"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-center text-white">
             <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur transition-transform group-hover:scale-110">
@@ -392,7 +392,7 @@ function Support() {
               href={href}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noreferrer noopener" : undefined}
-              className="group flex h-full flex-col rounded-3xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_20px_50px_-25px_rgba(80,40,20,0.35)]"
+              className="group flex h-full flex-col rounded-3xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_20px_50px_-25px_rgba(193,118,68,0.35)]"
             >
               <div className="flex items-center justify-between">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-2.5 py-1 text-[11px] uppercase tracking-wider text-secondary-foreground">
@@ -400,13 +400,13 @@ function Support() {
                   {type}
                 </span>
                 <ArrowUpRight
-                  className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
+                  className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
                   aria-hidden="true"
                 />
               </div>
               <h3 className="mt-5 font-display text-xl text-foreground">{name}</h3>
               <p className="mt-2 flex-1 text-sm text-muted-foreground">{blurb}</p>
-              <p className="mt-5 text-sm font-medium text-primary">{contact}</p>
+              <p className="mt-5 text-sm font-medium text-accent">{contact}</p>
             </a>
           </li>
         ))}
@@ -428,14 +428,14 @@ function Team() {
         {TEAM.map((member) => (
           <li
             key={member.name}
-            className="group rounded-3xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:shadow-[0_20px_50px_-25px_rgba(80,40,20,0.35)]"
+            className="group rounded-3xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:shadow-[0_20px_50px_-25px_rgba(193,118,68,0.35)]"
           >
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[linear-gradient(135deg,#a0cefd_0%,#e4f2ff_100%)]">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[linear-gradient(135deg,#DE888D_0%,#C17644_60%,#E9D820_100%)]">
               <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.7),transparent_60%),radial-gradient(circle_at_70%_80%,rgba(0,151,178,0.35),transparent_60%)]"
+                className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.55),transparent_60%),radial-gradient(circle_at_70%_80%,rgba(113,139,149,0.35),transparent_60%)]"
               />
-              <div className="absolute inset-0 flex items-center justify-center font-display text-5xl text-primary/60">
+              <div className="absolute inset-0 flex items-center justify-center font-display text-5xl text-white/80">
                 {member.name
                   .split(" ")
                   .map((n) => n[0])
@@ -463,14 +463,14 @@ function Closing() {
     <section className="relative overflow-hidden border-t border-border bg-black py-32 text-white">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,151,178,0.45),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(193,118,68,0.5),transparent_60%),radial-gradient(circle_at_80%_80%,rgba(222,136,141,0.3),transparent_60%)]"
       />
       <div className="relative mx-auto max-w-3xl px-6 text-center">
         <p className="text-xs uppercase tracking-[0.3em] text-white/50">A note from us</p>
         <p className="mt-8 font-display text-4xl leading-tight sm:text-6xl">
           You're not alone —
           <br />
-          <span className="italic text-[#a0cefd]">
+          <span className="italic text-[#E9D820]">
             even when you're home away from home.
           </span>
         </p>
