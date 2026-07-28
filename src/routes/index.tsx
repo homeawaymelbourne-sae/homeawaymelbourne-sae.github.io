@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { ArrowUpRight, Mail, Phone, Globe, Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, Mail, Phone, Globe, Menu, X, Volume2, VolumeX } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -158,24 +158,30 @@ function Navbar() {
             </ul>
           </nav>
 
-          <a
-            href="#animatic"
-            className="hidden items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02] md:inline-flex"
-          >
-            Watch the animatic
-            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-          </a>
+          <div className="hidden items-center gap-2 md:flex">
+            <AmbientAudio />
+            <a
+              href="#animatic"
+              className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
+            >
+              Watch the animatic
+              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
 
-          <button
+          <div className="flex items-center gap-1 md:hidden">
+            <AmbientAudio />
+            <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full text-foreground md:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full text-foreground"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-nav"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -209,6 +215,63 @@ function Navbar() {
 }
 
 function Hero() {
+  return HeroImpl();
+}
+
+function AmbientAudio() {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [ready, setReady] = useState(false);
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    const el = new Audio("/audio/ambient.mp3");
+    el.loop = true;
+    el.volume = 0.35;
+    el.preload = "auto";
+    const onCanPlay = () => setReady(true);
+    const onError = () => setReady(false);
+    el.addEventListener("canplaythrough", onCanPlay);
+    el.addEventListener("error", onError);
+    audioRef.current = el;
+    return () => {
+      el.pause();
+      el.removeEventListener("canplaythrough", onCanPlay);
+      el.removeEventListener("error", onError);
+      audioRef.current = null;
+    };
+  }, []);
+
+  const toggle = async () => {
+    const el = audioRef.current;
+    if (!el) return;
+    if (playing) {
+      el.pause();
+      setPlaying(false);
+    } else {
+      try {
+        await el.play();
+        setPlaying(true);
+      } catch {
+        setPlaying(false);
+      }
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      disabled={!ready}
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 bg-background/60 text-foreground transition-colors hover:bg-secondary disabled:opacity-40"
+      aria-label={playing ? "Mute ambient music" : "Play ambient music"}
+      title={ready ? (playing ? "Mute ambient music" : "Play ambient music") : "Ambient music: add public/audio/ambient.mp3"}
+    >
+      {playing ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+    </button>
+  );
+}
+
+function HeroImpl() {
   const [scrollY, setScrollY] = useState(0);
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
