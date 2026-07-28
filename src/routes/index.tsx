@@ -209,31 +209,56 @@ function Navbar() {
 }
 
 function Hero() {
+  const [scrollY, setScrollY] = useState(0);
+  useEffect(() => {
+    const onScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <section
       id="home"
-      className="relative flex min-h-[100dvh] items-center overflow-hidden bg-[linear-gradient(90deg,#a0cefd_0%,#e4f2ff_100%)] pt-28"
+      className="relative flex min-h-[100dvh] items-center overflow-hidden bg-black pt-28"
     >
-      {/* Soft ambient glow */}
+      {/* Parallax + zoom-in background.
+          Drop your image at: public/hero-background.jpg
+          (any name works — just update the url() below to match). */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-40 left-1/2 h-[60rem] w-[60rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(0,151,178,0.25),transparent_70%)] blur-3xl"
+        className="hero-zoom pointer-events-none absolute inset-0 -z-10 bg-[url('/hero-background.jpg')] bg-cover bg-center bg-no-repeat"
+        style={{ transform: `translate3d(0, ${scrollY * 0.35}px, 0) scale(1)` }}
+      />
+      {/* Fallback gradient wash + readability overlay */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(135deg,#DE888D_0%,#C17644_50%,#E9D820_100%)] opacity-[var(--bg-fallback-opacity,0.35)]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/60"
       />
 
-      <div className="relative mx-auto w-full max-w-5xl px-6 text-center">
-        <p className="reveal text-xs uppercase tracking-[0.3em] text-muted-foreground">
+      <div className="relative mx-auto w-full max-w-5xl px-6 text-center text-white">
+        <p
+          className="reveal text-xs uppercase tracking-[0.3em] text-white/80"
+          style={{ animationDelay: "1.2s" }}
+        >
           An animatic by SAE University College, Melbourne
         </p>
 
-        <h1 className="reveal-slow mt-6 font-display text-5xl leading-[0.95] sm:text-7xl md:text-[6.5rem]">
+        <h1
+          className="reveal-slow mt-6 font-display text-5xl leading-[0.95] text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.4)] sm:text-7xl md:text-[6.5rem]"
+          style={{ animationDelay: "1.5s" }}
+        >
           Home Away
           <br />
-          <span className="italic text-primary">From Home</span>
+          <span className="italic text-[#E9D820]">From Home</span>
         </h1>
 
         <p
-          className="reveal mx-auto mt-8 max-w-xl text-balance text-base text-muted-foreground sm:text-lg"
-          style={{ animationDelay: "0.4s" }}
+          className="reveal mx-auto mt-8 max-w-xl text-balance text-base text-white/85 sm:text-lg"
+          style={{ animationDelay: "2s" }}
         >
           A story about international students arriving in Melbourne — the loneliness no one warns
           you about, and the quiet ways we find each other again.
@@ -241,18 +266,18 @@ function Hero() {
 
         <div
           className="reveal mt-10 flex flex-wrap items-center justify-center gap-3"
-          style={{ animationDelay: "0.6s" }}
+          style={{ animationDelay: "2.3s" }}
         >
           <a
             href="#animatic"
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
+            className="inline-flex items-center gap-2 rounded-full bg-[#C17644] px-6 py-3 text-sm font-medium text-white transition-transform hover:scale-[1.02]"
           >
             Watch the animatic
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </a>
           <a
             href="#cause"
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-6 py-3 text-sm font-medium text-foreground backdrop-blur hover:bg-secondary"
+            className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-medium text-white backdrop-blur hover:bg-white/20"
           >
             Why we made this
           </a>
@@ -261,7 +286,7 @@ function Hero() {
 
       <div
         aria-hidden="true"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.3em] text-muted-foreground/70"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.3em] text-white/60"
       >
         Scroll
       </div>
@@ -278,11 +303,11 @@ function Animatic() {
       </p>
 
       <div className="mt-12">
-        <div className="group relative aspect-video w-full overflow-hidden rounded-3xl border border-border bg-black shadow-[0_30px_80px_-40px_rgba(0,151,178,0.45)]">
+        <div className="group relative aspect-video w-full overflow-hidden rounded-3xl border border-border bg-black shadow-[0_30px_80px_-40px_rgba(193,118,68,0.45)]">
           {/* Placeholder for upcoming YouTube embed */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(0,151,178,0.55),transparent_60%),radial-gradient(circle_at_70%_70%,rgba(160,206,253,0.35),transparent_60%)]"
+            className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(193,118,68,0.55),transparent_60%),radial-gradient(circle_at_70%_70%,rgba(222,136,141,0.4),transparent_60%)]"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-center text-white">
             <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur transition-transform group-hover:scale-110">
@@ -367,7 +392,7 @@ function Support() {
               href={href}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noreferrer noopener" : undefined}
-              className="group flex h-full flex-col rounded-3xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_20px_50px_-25px_rgba(80,40,20,0.35)]"
+              className="group flex h-full flex-col rounded-3xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_20px_50px_-25px_rgba(193,118,68,0.35)]"
             >
               <div className="flex items-center justify-between">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-2.5 py-1 text-[11px] uppercase tracking-wider text-secondary-foreground">
@@ -375,13 +400,13 @@ function Support() {
                   {type}
                 </span>
                 <ArrowUpRight
-                  className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
+                  className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
                   aria-hidden="true"
                 />
               </div>
               <h3 className="mt-5 font-display text-xl text-foreground">{name}</h3>
               <p className="mt-2 flex-1 text-sm text-muted-foreground">{blurb}</p>
-              <p className="mt-5 text-sm font-medium text-primary">{contact}</p>
+              <p className="mt-5 text-sm font-medium text-accent">{contact}</p>
             </a>
           </li>
         ))}
@@ -403,14 +428,14 @@ function Team() {
         {TEAM.map((member) => (
           <li
             key={member.name}
-            className="group rounded-3xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:shadow-[0_20px_50px_-25px_rgba(80,40,20,0.35)]"
+            className="group rounded-3xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:shadow-[0_20px_50px_-25px_rgba(193,118,68,0.35)]"
           >
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[linear-gradient(135deg,#a0cefd_0%,#e4f2ff_100%)]">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[linear-gradient(135deg,#DE888D_0%,#C17644_60%,#E9D820_100%)]">
               <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.7),transparent_60%),radial-gradient(circle_at_70%_80%,rgba(0,151,178,0.35),transparent_60%)]"
+                className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.55),transparent_60%),radial-gradient(circle_at_70%_80%,rgba(113,139,149,0.35),transparent_60%)]"
               />
-              <div className="absolute inset-0 flex items-center justify-center font-display text-5xl text-primary/60">
+              <div className="absolute inset-0 flex items-center justify-center font-display text-5xl text-white/80">
                 {member.name
                   .split(" ")
                   .map((n) => n[0])
@@ -438,14 +463,14 @@ function Closing() {
     <section className="relative overflow-hidden border-t border-border bg-black py-32 text-white">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,151,178,0.45),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(193,118,68,0.5),transparent_60%),radial-gradient(circle_at_80%_80%,rgba(222,136,141,0.3),transparent_60%)]"
       />
       <div className="relative mx-auto max-w-3xl px-6 text-center">
         <p className="text-xs uppercase tracking-[0.3em] text-white/50">A note from us</p>
         <p className="mt-8 font-display text-4xl leading-tight sm:text-6xl">
           You're not alone —
           <br />
-          <span className="italic text-[#a0cefd]">
+          <span className="italic text-[#E9D820]">
             even when you're home away from home.
           </span>
         </p>

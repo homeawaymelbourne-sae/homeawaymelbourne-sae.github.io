@@ -66,32 +66,35 @@
 :root {
   --radius: 0.75rem;
 
-  /* Team palette — dark turquoise, white, black, soft blue gradient */
+  /* Animatic palette — slate #718B95, terracotta #C17644, yellow #E9D820, pink #DE888D */
   --background: oklch(1 0 0);
-  --foreground: oklch(0.15 0.01 240);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0.01 240);
+  --foreground: oklch(0.15 0.02 220);
+  --card: oklch(0.995 0.003 90);
+  --card-foreground: oklch(0.15 0.02 220);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.01 240);
-  --primary: oklch(0.62 0.13 215);          /* #0097b2 dark turquoise */
+  --popover-foreground: oklch(0.15 0.02 220);
+  --primary: oklch(0.58 0.028 220);         /* #718B95 slate */
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.96 0.02 240);        /* soft blue tint */
-  --secondary-foreground: oklch(0.2 0.03 230);
-  --muted: oklch(0.97 0.015 235);
-  --muted-foreground: oklch(0.45 0.02 230);
-  --accent: oklch(0.88 0.06 245);           /* #a0cefd-ish */
-  --accent-foreground: oklch(0.2 0.03 230);
+  --secondary: oklch(0.94 0.015 220);
+  --secondary-foreground: oklch(0.25 0.03 220);
+  --muted: oklch(0.96 0.008 90);
+  --muted-foreground: oklch(0.45 0.02 220);
+  --accent: oklch(0.62 0.145 45);           /* #C17644 terracotta */
+  --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9 0.02 235);
-  --input: oklch(0.9 0.02 235);
-  --ring: oklch(0.62 0.13 215);
+  --border: oklch(0.9 0.012 220);
+  --input: oklch(0.9 0.012 220);
+  --ring: oklch(0.62 0.145 45);
 
   /* Brand tokens */
-  --brand-turquoise: #0097b2;
+  --brand-slate: #718B95;
+  --brand-terracotta: #C17644;
+  --brand-yellow: #E9D820;
+  --brand-pink: #DE888D;
   --brand-black: #000000;
   --brand-white: #ffffff;
-  --gradient-soft-blue: linear-gradient(90deg, #a0cefd 0%, #e4f2ff 100%);
+  --gradient-warm: linear-gradient(135deg, #DE888D 0%, #C17644 50%, #E9D820 100%);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -208,5 +211,21 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@utility hero-zoom {
+  animation: hero-zoom 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform-origin: center center;
+}
+
+@keyframes hero-zoom {
+  0% {
+    transform: scale(1.25);
+    filter: brightness(0.7);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
   }
 }
