@@ -289,7 +289,7 @@ function HeroImpl() {
           (any name works — just update the url() below to match). */}
       <div
         aria-hidden="true"
-        className="hero-zoom pointer-events-none absolute inset-0 -z-10 bg-[url('/hero-background.jpg')] bg-cover bg-center bg-no-repeat"
+        className="hero-zoom pointer-events-none absolute inset-0 -z-10 bg-[url('public/hero-background.jpg')] bg-cover bg-center bg-no-repeat"
         style={{ transform: `translate3d(0, ${scrollY * 0.35}px, 0) scale(1)` }}
       />
       {/* Fallback gradient wash + readability overlay */}
