@@ -215,6 +215,63 @@ function Navbar() {
 }
 
 function Hero() {
+  return HeroImpl();
+}
+
+function AmbientAudio() {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [ready, setReady] = useState(false);
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    const el = new Audio("/audio/ambient.mp3");
+    el.loop = true;
+    el.volume = 0.35;
+    el.preload = "auto";
+    const onCanPlay = () => setReady(true);
+    const onError = () => setReady(false);
+    el.addEventListener("canplaythrough", onCanPlay);
+    el.addEventListener("error", onError);
+    audioRef.current = el;
+    return () => {
+      el.pause();
+      el.removeEventListener("canplaythrough", onCanPlay);
+      el.removeEventListener("error", onError);
+      audioRef.current = null;
+    };
+  }, []);
+
+  const toggle = async () => {
+    const el = audioRef.current;
+    if (!el) return;
+    if (playing) {
+      el.pause();
+      setPlaying(false);
+    } else {
+      try {
+        await el.play();
+        setPlaying(true);
+      } catch {
+        setPlaying(false);
+      }
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      disabled={!ready}
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 bg-background/60 text-foreground transition-colors hover:bg-secondary disabled:opacity-40"
+      aria-label={playing ? "Mute ambient music" : "Play ambient music"}
+      title={ready ? (playing ? "Mute ambient music" : "Play ambient music") : "Ambient music: add public/audio/ambient.mp3"}
+    >
+      {playing ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+    </button>
+  );
+}
+
+function HeroImpl() {
   const [scrollY, setScrollY] = useState(0);
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
