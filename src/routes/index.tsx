@@ -290,12 +290,6 @@ function HeroImpl() {
       <div
         aria-hidden="true"
         className="hero-zoom pointer-events-none absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat"
-        style={{ transform: `translate3d(0, ${scrollY * 0.35}px, 0) scale(1)` }}
-        // eslint-disable-next-line react/no-unknown-property
-      />
-      <div
-        aria-hidden="true"
-        className="hero-zoom pointer-events-none absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('/hero-background.jpg')",
           transform: `translate3d(0, ${scrollY * 0.35}px, 0)`,
