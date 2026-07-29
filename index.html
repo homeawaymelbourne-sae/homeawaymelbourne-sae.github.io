@@ -160,18 +160,25 @@
               <li><a href="#team">Team</a></li>
             </ul>
           </nav>
-          <a class="cta" href="#animatic">Watch the animatic →</a>
+          <div class="nav-actions">
+            <button id="audio-toggle" class="audio-btn" type="button" aria-label="Play ambient music" title="Play ambient music">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            </button>
+            <a class="cta" href="#animatic">Watch the animatic →</a>
+          </div>
         </div>
       </div>
     </header>
 
     <main>
       <section id="home" class="hero">
+        <div class="hero-fallback" aria-hidden="true"></div>
+        <div class="hero-bg" id="hero-bg" aria-hidden="true"></div>
         <div class="container">
-          <p class="eyebrow">An animatic by SAE University College, Melbourne</p>
-          <h1 class="display">Home Away<br /><em>From Home</em></h1>
-          <p class="lead">A story about international students arriving in Melbourne — the loneliness no one warns you about, and the quiet ways we find each other again.</p>
-          <div class="btn-row">
+          <p class="eyebrow fade-up" style="animation-delay:1.2s; color: rgba(255,255,255,0.8);">An animatic by SAE University College, Melbourne</p>
+          <h1 class="display fade-up slow" style="animation-delay:1.5s;">Home Away<br /><em>From Home</em></h1>
+          <p class="lead fade-up" style="animation-delay:2s;">A story about international students arriving in Melbourne — the loneliness no one warns you about, and the quiet ways we find each other again.</p>
+          <div class="btn-row fade-up" style="animation-delay:2.3s;">
             <a class="btn btn-primary" href="#animatic">Watch the animatic →</a>
             <a class="btn btn-secondary" href="#cause">Why we made this</a>
           </div>
@@ -268,5 +275,35 @@
       </div>
     </footer>
     <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+    <script>
+      // Transparent → solid navbar transition after leaving hero
+      (function () {
+        var body = document.body;
+        var heroBg = document.getElementById('hero-bg');
+        var onScroll = function () {
+          var y = window.scrollY || 0;
+          if (y > 60) body.classList.add('nav-solid'); else body.classList.remove('nav-solid');
+          if (heroBg) heroBg.style.transform = 'scale(1) translate3d(0,' + (y * 0.35) + 'px, 0)';
+        };
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+      })();
+    </script>
+    <script>
+      // Ambient audio toggle (expects audio/ambient.mp3 in repo)
+      (function () {
+        var btn = document.getElementById('audio-toggle');
+        if (!btn) return;
+        var audio = new Audio('audio/ambient.mp3');
+        audio.loop = true; audio.volume = 0.35; audio.preload = 'auto';
+        var playing = false;
+        var svgOn = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>';
+        var svgOff = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+        btn.addEventListener('click', function () {
+          if (playing) { audio.pause(); playing = false; btn.innerHTML = svgOff; btn.setAttribute('aria-label','Play ambient music'); }
+          else { audio.play().then(function(){ playing = true; btn.innerHTML = svgOn; btn.setAttribute('aria-label','Mute ambient music'); }).catch(function(){}); }
+        });
+      })();
+    </script>
   </body>
 </html>
