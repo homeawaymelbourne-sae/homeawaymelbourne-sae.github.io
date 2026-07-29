@@ -117,7 +117,7 @@ function Navbar() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 60);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -131,13 +131,17 @@ function Navbar() {
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6">
         <div
-          className={`flex w-full items-center justify-between gap-6 rounded-full border border-border/60 bg-background/70 px-4 py-2 backdrop-blur-xl transition-shadow duration-500 sm:px-5 ${
-            scrolled ? "shadow-[0_10px_40px_-20px_rgba(80,40,20,0.25)]" : "shadow-none"
+          className={`flex w-full items-center justify-between gap-6 rounded-full px-4 py-2 transition-all duration-500 sm:px-5 ${
+            scrolled
+              ? "border border-border/60 bg-background/75 backdrop-blur-xl shadow-[0_10px_40px_-20px_rgba(80,40,20,0.25)]"
+              : "border border-transparent bg-transparent shadow-none"
           }`}
         >
           <a
             href="#home"
-            className="font-display text-base font-semibold tracking-[0.18em] text-primary"
+            className={`font-display text-base font-semibold tracking-[0.18em] transition-colors ${
+              scrolled ? "text-primary" : "text-white"
+            }`}
             aria-label="Home Away From Home — back to top"
           >
             HAHF
@@ -149,7 +153,11 @@ function Navbar() {
                 <li key={item.id}>
                   <a
                     href={`#${item.id}`}
-                    className="rounded-full px-3 py-1.5 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                    className={`rounded-full px-3 py-1.5 transition-colors ${
+                      scrolled
+                        ? "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                        : "text-white/85 hover:bg-white/15 hover:text-white"
+                    }`}
                   >
                     {item.label}
                   </a>
@@ -162,7 +170,7 @@ function Navbar() {
             <AmbientAudio />
             <a
               href="#animatic"
-              className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
+              className="inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-transform hover:scale-[1.02]"
             >
               Watch the animatic
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -174,7 +182,9 @@ function Navbar() {
             <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full text-foreground"
+            className={`inline-flex h-9 w-9 items-center justify-center rounded-full transition-colors ${
+              scrolled ? "text-foreground" : "text-white"
+            }`}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-nav"
