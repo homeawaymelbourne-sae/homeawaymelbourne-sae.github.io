@@ -24,9 +24,9 @@ export const Route = createFileRoute("/")({
 
 const NAV = [
   { id: "home", label: "Home" },
+  { id: "support", label: "Find support" },
   { id: "animatic", label: "Animatic" },
   { id: "cause", label: "Our cause" },
-  { id: "support", label: "Find support" },
   { id: "team", label: "Team" },
 ];
 
@@ -101,9 +101,9 @@ function Index() {
       <Navbar />
       <main id="main">
         <Hero />
+        <Support />
         <Animatic />
         <Cause />
-        <Support />
         <Team />
         <Closing />
       </main>
