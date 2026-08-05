@@ -231,6 +231,8 @@ function Hero() {
 function AmbientAudio() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
+  const [volume, setVolume] = useState(0.35);
+  const [showVolume, setShowVolume] = useState(false);
 
   useEffect(() => {
     const el = new Audio("/audio/ambient.mp3");
@@ -243,12 +245,37 @@ function AmbientAudio() {
     };
     el.addEventListener("ended", onEnded);
     audioRef.current = el;
+
+    // Try to start unmuted right away; browsers may block it until the first
+    // user gesture, so fall back to starting on the first interaction.
+    const start = () => {
+      el
+        .play()
+        .then(() => {
+          setPlaying(true);
+          removeGestureListeners();
+        })
+        .catch(() => {});
+    };
+    const onGesture = () => start();
+    const gestures = ["pointerdown", "keydown", "wheel", "touchstart", "scroll"] as const;
+    const removeGestureListeners = () => {
+      gestures.forEach((g) => window.removeEventListener(g, onGesture));
+    };
+    gestures.forEach((g) => window.addEventListener(g, onGesture, { passive: true, once: false }));
+    start();
+
     return () => {
       el.pause();
       el.removeEventListener("ended", onEnded);
+      removeGestureListeners();
       audioRef.current = null;
     };
   }, []);
+
+  useEffect(() => {
+    if (audioRef.current) audioRef.current.volume = volume;
+  }, [volume]);
 
   const toggle = async () => {
     const el = audioRef.current;
@@ -267,15 +294,43 @@ function AmbientAudio() {
   };
 
   return (
-    <button
-      type="button"
-      onClick={toggle}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 bg-background/60 text-foreground transition-colors hover:bg-secondary disabled:opacity-40"
-      aria-label={playing ? "Mute ambient music" : "Play ambient music"}
-      title={playing ? "Mute ambient music" : "Play ambient music"}
+    <div
+      className="relative flex items-center"
+      onMouseEnter={() => setShowVolume(true)}
+      onMouseLeave={() => setShowVolume(false)}
     >
-      {playing ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-    </button>
+      <button
+        type="button"
+        onClick={toggle}
+        onFocus={() => setShowVolume(true)}
+        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 bg-background/60 text-foreground transition-colors hover:bg-secondary"
+        aria-label={playing ? "Mute ambient music" : "Play ambient music"}
+        title={playing ? "Mute ambient music" : "Play ambient music"}
+      >
+        {playing ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+      </button>
+
+      <div
+        className={`overflow-hidden transition-all duration-300 ${
+          showVolume ? "ml-2 w-24 opacity-100" : "ml-0 w-0 opacity-0"
+        }`}
+      >
+        <input
+          type="range"
+          min={0}
+          max={1}
+          step={0.01}
+          value={volume}
+          onChange={(e) => {
+            const v = Number(e.target.value);
+            setVolume(v);
+            if (v > 0 && !playing) void toggle();
+          }}
+          aria-label="Ambient music volume"
+          className="h-1 w-24 cursor-pointer appearance-none rounded-full bg-border accent-accent"
+        />
+      </div>
+    </div>
   );
 }
 

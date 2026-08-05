@@ -62,6 +62,7 @@
       .nav-actions { display: flex; align-items: center; gap: 8px; }
       .audio-btn { width: 36px; height: 36px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.1); color: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: background .3s, color .3s, border-color .3s; }
       .audio-btn:hover { background: rgba(255,255,255,0.2); }
+      .audio-vol { width: 90px; height: 4px; border-radius: 999px; cursor: pointer; accent-color: var(--terracotta, #C17644); }
       body.nav-solid .audio-btn { border-color: var(--border); background: #fff; color: var(--ink); }
       .cta { display: none; align-items: center; gap: 6px; background: var(--accent); color: white; padding: 9px 18px; border-radius: 999px; text-decoration: none; font-size: 14px; font-weight: 500; transition: transform .2s; }
       .cta:hover { transform: scale(1.02); }
@@ -164,6 +165,7 @@
             <button id="audio-toggle" class="audio-btn" type="button" aria-label="Play ambient music" title="Play ambient music">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
             </button>
+            <input id="audio-volume" class="audio-vol" type="range" min="0" max="1" step="0.01" value="0.35" aria-label="Ambient music volume" />
             <a class="cta" href="#animatic">Watch the animatic →</a>
           </div>
         </div>
@@ -303,6 +305,25 @@
           if (playing) { audio.pause(); playing = false; btn.innerHTML = svgOff; btn.setAttribute('aria-label','Play ambient music'); }
           else { audio.play().then(function(){ playing = true; btn.innerHTML = svgOn; btn.setAttribute('aria-label','Mute ambient music'); }).catch(function(){}); }
         });
+        var vol = document.getElementById('audio-volume');
+        if (vol) {
+          vol.addEventListener('input', function () {
+            audio.volume = Number(vol.value);
+            if (Number(vol.value) > 0 && !playing) { btn.click(); }
+          });
+        }
+        function start() {
+          audio.play().then(function () {
+            playing = true; btn.innerHTML = svgOn; btn.setAttribute('aria-label','Mute ambient music');
+            ['pointerdown','keydown','wheel','touchstart','scroll'].forEach(function (g) {
+              window.removeEventListener(g, start);
+            });
+          }).catch(function(){});
+        }
+        ['pointerdown','keydown','wheel','touchstart','scroll'].forEach(function (g) {
+          window.addEventListener(g, start, { passive: true });
+        });
+        start();
       })();
     </script>
   </body>
