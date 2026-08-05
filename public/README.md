@@ -5,7 +5,7 @@ This folder is served from the site root. Anything dropped here is available at 
 ## Where to put files
 
 - Hero background image → `public/hero-background.jpg` (referenced as `url('/hero-background.jpg')`)
-- Ambient background music → `public/audio/ambient.mp3` (auto-loaded by the ambient player in the navbar; loops, muted by default, users unmute with the speaker button)
+- Ambient background music → `public/audio/ambient.mp3` (auto-loaded by the ambient player in the navbar; loops forever, silent by default, users start/mute it with the speaker button). Currently holds "CIM220 Website music_Sample 1".
 - Click / hover SFX (later) → `public/audio/click.mp3`, `public/audio/hover.mp3`
 
 ## Why you don't see it in GitHub yet

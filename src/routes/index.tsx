@@ -230,7 +230,6 @@ function Hero() {
 
 function AmbientAudio() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
@@ -238,15 +237,15 @@ function AmbientAudio() {
     el.loop = true;
     el.volume = 0.35;
     el.preload = "auto";
-    const onCanPlay = () => setReady(true);
-    const onError = () => setReady(false);
-    el.addEventListener("canplaythrough", onCanPlay);
-    el.addEventListener("error", onError);
+    const onEnded = () => {
+      el.currentTime = 0;
+      void el.play();
+    };
+    el.addEventListener("ended", onEnded);
     audioRef.current = el;
     return () => {
       el.pause();
-      el.removeEventListener("canplaythrough", onCanPlay);
-      el.removeEventListener("error", onError);
+      el.removeEventListener("ended", onEnded);
       audioRef.current = null;
     };
   }, []);
@@ -271,10 +270,9 @@ function AmbientAudio() {
     <button
       type="button"
       onClick={toggle}
-      disabled={!ready}
       className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 bg-background/60 text-foreground transition-colors hover:bg-secondary disabled:opacity-40"
       aria-label={playing ? "Mute ambient music" : "Play ambient music"}
-      title={ready ? (playing ? "Mute ambient music" : "Play ambient music") : "Ambient music: add public/audio/ambient.mp3"}
+      title={playing ? "Mute ambient music" : "Play ambient music"}
     >
       {playing ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
     </button>
