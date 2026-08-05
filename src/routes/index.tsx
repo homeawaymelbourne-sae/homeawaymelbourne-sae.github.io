@@ -325,7 +325,7 @@ function HeroImpl() {
 
         <h1 className="reveal-slow mt-6" style={{ animationDelay: "1.5s" }}>
           <img
-            src="/HAHF_WHITE.png"
+            src="/HAHF_WHITE.png?v=2"
             alt="Home Away From Home"
             className="mx-auto w-full max-w-[22rem] drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:max-w-[32rem] md:max-w-[40rem]"
           />
