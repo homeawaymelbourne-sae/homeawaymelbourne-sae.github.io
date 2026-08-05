@@ -323,13 +323,12 @@ function HeroImpl() {
           An animatic by SAE University College, Melbourne
         </p>
 
-        <h1
-          className="reveal-slow mt-6 font-display text-5xl leading-[0.95] text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.4)] sm:text-7xl md:text-[6.5rem]"
-          style={{ animationDelay: "1.5s" }}
-        >
-          Home Away
-          <br />
-          <span className="italic text-[#E9D820]">From Home</span>
+        <h1 className="reveal-slow mt-6" style={{ animationDelay: "1.5s" }}>
+          <img
+            src="/HAHF_WHITE.png"
+            alt="Home Away From Home"
+            className="mx-auto w-full max-w-[22rem] drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:max-w-[32rem] md:max-w-[40rem]"
+          />
         </h1>
 
         <p
