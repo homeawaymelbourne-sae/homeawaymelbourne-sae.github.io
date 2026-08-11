@@ -31,10 +31,22 @@ const NAV = [
 ];
 
 const TEAM = [
-  { name: "Ava Leppitsch", role: "Foley Artist & Mixing Engineer" },
-  { name: "Tra Pham", role: "Animator" },
-  { name: "Kenula Kandana Arachchi", role: "Musician, Music Producer & Website Designer" },
-  { name: "Constantine Chavez", role: "Musician & Music Producer" },
+  {
+    name: "Ava Leppitsch",
+    role: "Foley Artist & Mixing Engineer",
+    photo: "/Ava%20Leppitsch.JPG",
+  },
+  { name: "Tra Pham", role: "Animator", photo: null },
+  {
+    name: "Kenula Kandana Arachchi",
+    role: "Musician, Music Producer & Website Designer",
+    photo: "/Kenula%20Kandana%20Arachchi.JPG",
+  },
+  {
+    name: "Constantine Chavez",
+    role: "Musician & Music Producer",
+    photo: "/Constantine%20Chavez.JPG",
+  },
 ];
 
 const SUPPORT = [
@@ -139,12 +151,18 @@ function Navbar() {
         >
           <a
             href="#home"
-            className={`font-display text-base font-semibold tracking-[0.18em] transition-colors ${
-              scrolled ? "text-primary" : "text-white"
-            }`}
+            className="flex items-center"
             aria-label="Home Away From Home — back to top"
           >
-            HAHF
+            <img
+              src="/HAHF_WHITE.png?v=2"
+              alt="Home Away From Home"
+              className={`h-7 w-auto transition-all duration-500 sm:h-8 ${
+                scrolled
+                  ? "brightness-0 saturate-0 opacity-90"
+                  : "drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)]"
+              }`}
+            />
           </a>
 
           <nav aria-label="Primary" className="hidden md:block">
@@ -559,17 +577,28 @@ function Team() {
             className="group rounded-3xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:shadow-[0_20px_50px_-25px_rgba(193,118,68,0.35)]"
           >
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[linear-gradient(135deg,#DE888D_0%,#C17644_60%,#E9D820_100%)]">
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.55),transparent_60%),radial-gradient(circle_at_70%_80%,rgba(113,139,149,0.35),transparent_60%)]"
-              />
-              <div className="absolute inset-0 flex items-center justify-center font-display text-5xl text-white/80">
-                {member.name
-                  .split(" ")
-                  .map((n) => n[0])
-                  .slice(0, 2)
-                  .join("")}
-              </div>
+              {member.photo ? (
+                <img
+                  src={member.photo}
+                  alt={member.name}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              ) : (
+                <>
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.55),transparent_60%),radial-gradient(circle_at_70%_80%,rgba(113,139,149,0.35),transparent_60%)]"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center font-display text-5xl text-white/80">
+                    {member.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .slice(0, 2)
+                      .join("")}
+                  </div>
+                </>
+              )}
             </div>
             <h3 className="mt-5 font-display text-lg leading-tight text-foreground">
               {member.name}
