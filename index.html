@@ -52,11 +52,14 @@
         background: rgba(253,250,246,0.78); backdrop-filter: blur(16px);
         border-color: var(--border); box-shadow: 0 10px 40px -20px rgba(80,40,20,0.25);
       }
-      .logo { font-family: "Fraunces", Georgia, serif; font-weight: 600; letter-spacing: 0.18em; color: #fff; text-decoration: none; transition: color .4s ease; }
+      .logo { display: inline-flex; align-items: center; }
+      .logo-img { height: 30px; width: auto; display: block; filter: drop-shadow(0 1px 8px rgba(0,0,0,0.45)); transition: filter .4s ease; }
+      body.nav-solid .logo-img { filter: brightness(0) saturate(0); opacity: .9; }
+      .logo-text { font-family: "Fraunces", Georgia, serif; font-weight: 600; letter-spacing: 0.18em; color: #fff; text-decoration: none; transition: color .4s ease; }
       .nav-links { display: none; gap: 4px; list-style: none; margin: 0; padding: 0; }
       .nav-links a { text-decoration: none; color: rgba(255,255,255,0.85); padding: 6px 14px; border-radius: 999px; font-size: 14px; transition: color .3s, background .3s; }
       .nav-links a:hover { background: rgba(255,255,255,0.12); color: #fff; }
-      body.nav-solid .logo { color: var(--accent); }
+      
       body.nav-solid .nav-links a { color: var(--muted); }
       body.nav-solid .nav-links a:hover { background: #f4ece1; color: var(--ink); }
       .nav-actions { display: flex; align-items: center; gap: 8px; }
@@ -123,7 +126,8 @@
       @media (min-width: 640px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
       @media (min-width: 1024px) { .team-grid { grid-template-columns: repeat(4, 1fr); } }
       .member { border: 1px solid var(--border); border-radius: 24px; padding: 20px; background: white; }
-      .avatar { aspect-ratio: 4/5; border-radius: 16px; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-family: "Fraunces", Georgia, serif; font-size: 52px; color: rgba(255,255,255,0.85); }
+      .avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .avatar { position: relative; overflow: hidden; aspect-ratio: 4/5; border-radius: 16px; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-family: "Fraunces", Georgia, serif; font-size: 52px; color: rgba(255,255,255,0.85); }
       .member h3 { font-family: "Fraunces", Georgia, serif; font-size: 18px; margin: 16px 0 4px; line-height: 1.2; }
       .member p { margin: 0; color: var(--muted); font-size: 14px; }
 
@@ -146,12 +150,13 @@
   <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/70827e30-e528-4d81-92b5-84ab527b8314/id-preview-8105b9ff--13b982cf-1be4-4643-a090-a27f6922e989.lovable.app-1782576239201.png">
   <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/70827e30-e528-4d81-92b5-84ab527b8314/id-preview-8105b9ff--13b982cf-1be4-4643-a090-a27f6922e989.lovable.app-1782576239201.png">
   <meta name="twitter:card" content="summary_large_image">
-</head>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  </head>
   <body>
     <header class="nav">
       <div class="container">
         <div class="nav-inner">
-          <a class="logo" href="#home" aria-label="Home Away From Home">HAHF</a>
+          <a class="logo" href="#home" aria-label="Home Away From Home"><img src="HAHF_WHITE.png?v=2" alt="Home Away From Home" class="logo-img" /></a>
           <nav>
             <ul class="nav-links">
               <li><a href="#home">Home</a></li>
@@ -253,10 +258,10 @@
             <p style="color: var(--muted); margin-top: 16px;">We're a small team from SAE University College, Melbourne — audio engineers, animators, designers, music producers and storytellers who, between us, have moved here from a few different homes.</p>
           </div>
           <div class="team-grid">
-            <div class="member"><div class="avatar">AL</div><h3>Ava Leppitsch</h3><p>Foley Artist &amp; Mixing Engineer</p></div>
+            <div class="member"><div class="avatar"><img src="Ava%20Leppitsch.JPG" alt="Ava Leppitsch" loading="lazy" /></div><h3>Ava Leppitsch</h3><p>Foley Artist &amp; Mixing Engineer</p></div>
             <div class="member"><div class="avatar">TP</div><h3>Tra Pham</h3><p>Animator</p></div>
-            <div class="member"><div class="avatar">KK</div><h3>Kenula Kandana Arachchi</h3><p>Musician, Music Producer &amp; Website Designer</p></div>
-            <div class="member"><div class="avatar">CC</div><h3>Constantine Chavez</h3><p>Musician &amp; Music Producer</p></div>
+            <div class="member"><div class="avatar"><img src="Kenula%20Kandana%20Arachchi.JPG" alt="Kenula Kandana Arachchi" loading="lazy" /></div><h3>Kenula Kandana Arachchi</h3><p>Musician, Music Producer &amp; Website Designer</p></div>
+            <div class="member"><div class="avatar"><img src="Constantine%20Chavez.JPG" alt="Constantine Chavez" loading="lazy" /></div><h3>Constantine Chavez</h3><p>Musician &amp; Music Producer</p></div>
           </div>
         </div>
       </section>
