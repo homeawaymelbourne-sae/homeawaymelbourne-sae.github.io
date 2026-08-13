@@ -424,6 +424,7 @@ function HeroImpl() {
         >
           <a
             href="#animatic"
+            data-sfx="g"
             className="inline-flex items-center gap-2 rounded-full bg-[#C17644] px-6 py-3 text-sm font-medium text-white transition-transform hover:scale-[1.02]"
           >
             Watch the animatic
@@ -431,11 +432,19 @@ function HeroImpl() {
           </a>
           <a
             href="#cause"
+            data-sfx="g-nm"
             className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-medium text-white backdrop-blur hover:bg-white/20"
           >
             Why we made this
           </a>
         </div>
+
+        <p
+          className="reveal mt-8 text-xs uppercase tracking-[0.3em] text-white/70"
+          style={{ animationDelay: "2.9s" }}
+        >
+          Click anywhere to listen to audio!
+        </p>
       </div>
 
       <div
