@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Mail, Phone, Globe, Menu, X, Volume2, VolumeX } from "lucide-react";
+import { initSfx } from "@/lib/sfx";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -102,6 +103,8 @@ const SUPPORT = [
 ];
 
 function Index() {
+  useEffect(() => initSfx(), []);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <a
@@ -152,6 +155,7 @@ function Navbar() {
           <a
             href="#home"
             className="flex items-center"
+            data-sfx="e"
             aria-label="Home Away From Home — back to top"
           >
             <img
@@ -171,6 +175,7 @@ function Navbar() {
                 <li key={item.id}>
                   <a
                     href={`#${item.id}`}
+                    data-sfx="e"
                     className={`rounded-full px-3 py-1.5 transition-colors ${
                       scrolled
                         ? "text-muted-foreground hover:bg-secondary hover:text-foreground"
@@ -188,6 +193,7 @@ function Navbar() {
             <AmbientAudio />
             <a
               href="#animatic"
+              data-sfx="g"
               className="inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-transform hover:scale-[1.02]"
             >
               Watch the animatic
@@ -200,6 +206,7 @@ function Navbar() {
             <button
             type="button"
             onClick={() => setOpen((o) => !o)}
+            data-sfx="e"
             className={`inline-flex h-9 w-9 items-center justify-center rounded-full transition-colors ${
               scrolled ? "text-foreground" : "text-white"
             }`}
@@ -228,6 +235,7 @@ function Navbar() {
                   <a
                     href={`#${item.id}`}
                     onClick={() => setOpen(false)}
+                    data-sfx="e"
                     className="block rounded-2xl px-4 py-3 text-base text-foreground hover:bg-secondary"
                   >
                     {item.label}
@@ -416,6 +424,7 @@ function HeroImpl() {
         >
           <a
             href="#animatic"
+            data-sfx="g"
             className="inline-flex items-center gap-2 rounded-full bg-[#C17644] px-6 py-3 text-sm font-medium text-white transition-transform hover:scale-[1.02]"
           >
             Watch the animatic
@@ -423,11 +432,19 @@ function HeroImpl() {
           </a>
           <a
             href="#cause"
+            data-sfx="g-nm"
             className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-medium text-white backdrop-blur hover:bg-white/20"
           >
             Why we made this
           </a>
         </div>
+
+        <p
+          className="reveal mt-8 text-xs uppercase tracking-[0.3em] text-white/70"
+          style={{ animationDelay: "2.9s" }}
+        >
+          Click anywhere to listen to audio!
+        </p>
       </div>
 
       <div
@@ -538,6 +555,7 @@ function Support() {
               href={href}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noreferrer noopener" : undefined}
+              data-sfx="c"
               className="group flex h-full flex-col rounded-3xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_20px_50px_-25px_rgba(193,118,68,0.35)]"
             >
               <div className="flex items-center justify-between">
