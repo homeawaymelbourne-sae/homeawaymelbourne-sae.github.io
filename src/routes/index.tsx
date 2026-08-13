@@ -37,7 +37,7 @@ const TEAM = [
     role: "Foley Artist & Mixing Engineer",
     photo: "/Ava%20Leppitsch.JPG",
   },
-  { name: "Tra Pham", role: "Animator", photo: null },
+  { name: "Tra Pham", role: "Animator", photo: "/Tra%20Pham.JPG" },
   {
     name: "Kenula Kandana Arachchi",
     role: "Musician, Music Producer & Website Designer",
