@@ -555,6 +555,7 @@ function Support() {
               href={href}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noreferrer noopener" : undefined}
+              data-sfx="c"
               className="group flex h-full flex-col rounded-3xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_20px_50px_-25px_rgba(193,118,68,0.35)]"
             >
               <div className="flex items-center justify-between">
