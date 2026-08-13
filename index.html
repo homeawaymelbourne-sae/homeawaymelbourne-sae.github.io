@@ -201,12 +201,12 @@
             <p style="color: var(--muted); margin-top: 16px;">Real communities, services and helplines in Melbourne and across Australia. Save one. Send one to a friend.</p>
           </div>
           <div class="grid-cards">
-            <a class="card" href="https://www.studymelbourne.vic.gov.au/" target="_blank" rel="noopener"><span class="tag">Website</span><h3>Study Melbourne Hub</h3><p>Free in-person and online support for international students — wellbeing, study, work and life in Victoria.</p><span class="contact">studymelbourne.vic.gov.au</span></a>
-            <a class="card" href="tel:131114"><span class="tag">Crisis line</span><h3>Lifeline Australia</h3><p>24/7 crisis support and suicide prevention services, free to call from anywhere in Australia.</p><span class="contact">13 11 14</span></a>
-            <a class="card" href="tel:1300224636"><span class="tag">Helpline</span><h3>Beyond Blue</h3><p>Free, confidential mental health support for anxiety, depression and homesickness.</p><span class="contact">1300 22 4636</span></a>
-            <a class="card" href="https://headspace.org.au/" target="_blank" rel="noopener"><span class="tag">Website</span><h3>headspace</h3><p>Mental health support for young people aged 12–25, including international students.</p><span class="contact">headspace.org.au</span></a>
-            <a class="card" href="mailto:counsellor.melbourne@sae.edu.au"><span class="tag">Email</span><h3>SAE Student Counselling Services</h3><p>Counselling, peer support and academic care available to every SAE student.</p><span class="contact">counsellor.melbourne@sae.edu.au</span></a>
-            <a class="card" href="https://www.facebook.com/cisa.national/" target="_blank" rel="noopener"><span class="tag">Community</span><h3>Council of Intl. Students Australia</h3><p>Peer-led national body representing and connecting international students.</p><span class="contact">facebook.com/cisa.national/</span></a>
+            <a class="card" data-sfx="c" href="https://www.studymelbourne.vic.gov.au/" target="_blank" rel="noopener"><span class="tag">Website</span><h3>Study Melbourne Hub</h3><p>Free in-person and online support for international students — wellbeing, study, work and life in Victoria.</p><span class="contact">studymelbourne.vic.gov.au</span></a>
+            <a class="card" data-sfx="c" href="tel:131114"><span class="tag">Crisis line</span><h3>Lifeline Australia</h3><p>24/7 crisis support and suicide prevention services, free to call from anywhere in Australia.</p><span class="contact">13 11 14</span></a>
+            <a class="card" data-sfx="c" href="tel:1300224636"><span class="tag">Helpline</span><h3>Beyond Blue</h3><p>Free, confidential mental health support for anxiety, depression and homesickness.</p><span class="contact">1300 22 4636</span></a>
+            <a class="card" data-sfx="c" href="https://headspace.org.au/" target="_blank" rel="noopener"><span class="tag">Website</span><h3>headspace</h3><p>Mental health support for young people aged 12–25, including international students.</p><span class="contact">headspace.org.au</span></a>
+            <a class="card" data-sfx="c" href="mailto:counsellor.melbourne@sae.edu.au"><span class="tag">Email</span><h3>SAE Student Counselling Services</h3><p>Counselling, peer support and academic care available to every SAE student.</p><span class="contact">counsellor.melbourne@sae.edu.au</span></a>
+            <a class="card" data-sfx="c" href="https://www.facebook.com/cisa.national/" target="_blank" rel="noopener"><span class="tag">Community</span><h3>Council of Intl. Students Australia</h3><p>Peer-led national body representing and connecting international students.</p><span class="contact">facebook.com/cisa.national/</span></a>
           </div>
         </div>
       </section>
@@ -330,6 +330,35 @@
           window.addEventListener(g, start, { passive: true });
         });
         start();
+      })();
+    </script>
+    <script>
+      (function () {
+        var FILES = {
+          e: "audio/cim220.2_beep_e.wav",
+          g: "audio/cim220.2_beep_g.wav",
+          "g-nm": "audio/cim220.2_beep_g_no%20marimba.wav",
+          c: "audio/cim220.2_beep_c.wav",
+          def: "audio/cim220.2_beep_c_no%20marimba.wav"
+        };
+        var cache = {};
+        Object.keys(FILES).forEach(function (k) {
+          var a = new Audio(FILES[k]);
+          a.preload = "auto";
+          cache[k] = a;
+        });
+        document.addEventListener("click", function (ev) {
+          var el = ev.target && ev.target.closest && ev.target.closest("a,button,[role='button']");
+          if (!el) return;
+          var key = el.getAttribute("data-sfx") || "def";
+          var base = cache[key] || cache.def;
+          try {
+            var node = base.cloneNode(true);
+            node.volume = 0.5;
+            var pr = node.play();
+            if (pr && pr.catch) pr.catch(function () {});
+          } catch (e) {}
+        });
       })();
     </script>
   </body>
