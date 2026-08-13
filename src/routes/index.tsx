@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Mail, Phone, Globe, Menu, X, Volume2, VolumeX } from "lucide-react";
+import { initSfx } from "@/lib/sfx";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -102,6 +103,8 @@ const SUPPORT = [
 ];
 
 function Index() {
+  useEffect(() => initSfx(), []);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <a
@@ -152,6 +155,7 @@ function Navbar() {
           <a
             href="#home"
             className="flex items-center"
+            data-sfx="e"
             aria-label="Home Away From Home — back to top"
           >
             <img
@@ -171,6 +175,7 @@ function Navbar() {
                 <li key={item.id}>
                   <a
                     href={`#${item.id}`}
+                    data-sfx="e"
                     className={`rounded-full px-3 py-1.5 transition-colors ${
                       scrolled
                         ? "text-muted-foreground hover:bg-secondary hover:text-foreground"
@@ -188,6 +193,7 @@ function Navbar() {
             <AmbientAudio />
             <a
               href="#animatic"
+              data-sfx="g"
               className="inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-transform hover:scale-[1.02]"
             >
               Watch the animatic
@@ -200,6 +206,7 @@ function Navbar() {
             <button
             type="button"
             onClick={() => setOpen((o) => !o)}
+            data-sfx="e"
             className={`inline-flex h-9 w-9 items-center justify-center rounded-full transition-colors ${
               scrolled ? "text-foreground" : "text-white"
             }`}
@@ -228,6 +235,7 @@ function Navbar() {
                   <a
                     href={`#${item.id}`}
                     onClick={() => setOpen(false)}
+                    data-sfx="e"
                     className="block rounded-2xl px-4 py-3 text-base text-foreground hover:bg-secondary"
                   >
                     {item.label}
