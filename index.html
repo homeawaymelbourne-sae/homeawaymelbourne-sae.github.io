@@ -117,9 +117,14 @@
       .card { border: 1px solid var(--border); border-radius: 24px; padding: 24px; background: white; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: transform .2s, border-color .2s, box-shadow .2s; }
       .card:hover { transform: translateY(-4px); border-color: rgba(193,118,68,0.45); box-shadow: 0 20px 50px -25px rgba(193,118,68,0.35); }
       .tag { display: inline-block; background: #f4ece1; color: var(--accent); padding: 4px 10px; border-radius: 999px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; width: fit-content; }
-      .card h3 { font-family: "Fraunces", Georgia, serif; font-size: 20px; margin: 16px 0 8px; }
+      .card h3, .card h4 { font-family: "Fraunces", Georgia, serif; font-size: 20px; margin: 16px 0 8px; }
       .card p { color: var(--muted); font-size: 14px; flex: 1; margin: 0; }
       .card .contact { margin-top: 16px; color: var(--accent); font-weight: 500; font-size: 14px; }
+      .support-groups { display: flex; flex-direction: column; gap: 64px; }
+      .support-group .group-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+      .support-group .group-head h3 { font-family: "Fraunces", Georgia, serif; font-size: clamp(24px, 3vw, 32px); margin: 0; }
+      .support-group .group-head p { color: var(--muted); font-size: 14px; margin: 0; max-width: 460px; }
+      @media (min-width: 640px) { .support-group .group-head { flex-direction: row; align-items: flex-end; justify-content: space-between; } }
 
       /* Team */
       .team-grid { display: grid; gap: 24px; grid-template-columns: 1fr; }
@@ -200,13 +205,60 @@
             <h2 class="display">You don't have to figure this out alone.</h2>
             <p style="color: var(--muted); margin-top: 16px;">Real communities, services and helplines in Melbourne and across Australia. Save one. Send one to a friend.</p>
           </div>
-          <div class="grid-cards">
-            <a class="card" data-sfx="c" href="https://www.studymelbourne.vic.gov.au/" target="_blank" rel="noopener"><span class="tag">Website</span><h3>Study Melbourne Hub</h3><p>Free in-person and online support for international students — wellbeing, study, work and life in Victoria.</p><span class="contact">studymelbourne.vic.gov.au</span></a>
-            <a class="card" data-sfx="c" href="tel:131114"><span class="tag">Crisis line</span><h3>Lifeline Australia</h3><p>24/7 crisis support and suicide prevention services, free to call from anywhere in Australia.</p><span class="contact">13 11 14</span></a>
-            <a class="card" data-sfx="c" href="tel:1300224636"><span class="tag">Helpline</span><h3>Beyond Blue</h3><p>Free, confidential mental health support for anxiety, depression and homesickness.</p><span class="contact">1300 22 4636</span></a>
-            <a class="card" data-sfx="c" href="https://headspace.org.au/" target="_blank" rel="noopener"><span class="tag">Website</span><h3>headspace</h3><p>Mental health support for young people aged 12–25, including international students.</p><span class="contact">headspace.org.au</span></a>
-            <a class="card" data-sfx="c" href="mailto:counsellor.melbourne@sae.edu.au"><span class="tag">Email</span><h3>SAE Student Counselling Services</h3><p>Counselling, peer support and academic care available to every SAE student.</p><span class="contact">counsellor.melbourne@sae.edu.au</span></a>
-            <a class="card" data-sfx="c" href="https://www.facebook.com/cisa.national/" target="_blank" rel="noopener"><span class="tag">Community</span><h3>Council of Intl. Students Australia</h3><p>Peer-led national body representing and connecting international students.</p><span class="contact">facebook.com/cisa.national/</span></a>
+
+          <div class="support-groups">
+            <div class="support-group">
+              <div class="group-head">
+                <h3>Need help now?</h3>
+                <p>Crisis support and mental health services that are there when you need them.</p>
+              </div>
+              <div class="grid-cards">
+                <a class="card" data-sfx="c" href="tel:131114"><span class="tag">Crisis line</span><h4>Lifeline Australia</h4><p>24/7 crisis support and suicide prevention. Free to call from anywhere in Australia.</p><span class="contact">13 11 14</span></a>
+                <a class="card" data-sfx="c" href="tel:1300224636"><span class="tag">Helpline</span><h4>Beyond Blue</h4><p>Free, confidential mental health support for anxiety, depression and homesickness.</p><span class="contact">1300 22 4636</span></a>
+                <a class="card" data-sfx="c" href="https://headspace.org.au/" target="_blank" rel="noopener"><span class="tag">Website</span><h4>headspace</h4><p>Mental health support for young people aged 12–25, including international students.</p><span class="contact">headspace.org.au</span></a>
+                <a class="card" data-sfx="c" href="https://www.salvationarmy.org.au/melbourne614/" target="_blank" rel="noopener"><span class="tag">Support service</span><h4>Salvation Army Melbourne Project 614</h4><p>Free meals, counselling, legal help, housing info and a safe space for international students.</p><span class="contact">salvationarmy.org.au/melbourne614</span></a>
+              </div>
+            </div>
+
+            <div class="support-group">
+              <div class="group-head">
+                <h3>Study &amp; student support</h3>
+                <p>Official services, university help and peer networks for international students.</p>
+              </div>
+              <div class="grid-cards">
+                <a class="card" data-sfx="c" href="https://studymelbourne.vic.gov.au/our-hub" target="_blank" rel="noopener"><span class="tag">Website</span><h4>Study Melbourne Hub</h4><p>Victorian Government support with study spaces, events, workshops and student services.</p><span class="contact">studymelbourne.vic.gov.au</span></a>
+                <a class="card" data-sfx="c" href="mailto:wellbeing@sae.edu.au"><span class="tag">Email</span><h4>SAE Student Wellbeing</h4><p>Counselling, peer support and academic care available to every SAE student.</p><span class="contact">wellbeing@sae.edu.au</span></a>
+                <a class="card" data-sfx="c" href="https://student.sae.edu.au/events/" target="_blank" rel="noopener"><span class="tag">Events</span><h4>SAE Student Events</h4><p>Events on campus, through Slack and online — a great way to meet other students.</p><span class="contact">student.sae.edu.au/events</span></a>
+                <a class="card" data-sfx="c" href="https://www.cisa.edu.au/" target="_blank" rel="noopener"><span class="tag">Community</span><h4>Council of Intl. Students Australia</h4><p>National peer-led body representing and connecting international students.</p><span class="contact">cisa.edu.au</span></a>
+              </div>
+            </div>
+
+            <div class="support-group">
+              <div class="group-head">
+                <h3>Make friends &amp; find your people</h3>
+                <p>Clubs, meetups and communities where you can meet like-minded people.</p>
+              </div>
+              <div class="grid-cards">
+                <a class="card" data-sfx="c" href="https://www.meetup.com/find/?source=GROUPS&amp;keywords=Melbourne&amp;distance=twentyFiveMiles" target="_blank" rel="noopener"><span class="tag">Community</span><h4>Meetup Melbourne</h4><p>65,000+ members. Filter groups and social events by your hobbies and interests.</p><span class="contact">meetup.com/find/?keywords=Melbourne</span></a>
+                <a class="card" data-sfx="c" href="https://www.nhvic.org.au/" target="_blank" rel="noopener"><span class="tag">Community</span><h4>Neighbourhood Houses</h4><p>400+ community organisations across Victoria with affordable classes and social events.</p><span class="contact">nhvic.org.au</span></a>
+                <a class="card" data-sfx="c" href="https://www.instagram.com/vivu_together?igsh=MjBxMTBjNXN5Zzdz" target="_blank" rel="noopener"><span class="tag">Club</span><h4>Vivu Together</h4><p>Vietnamese interclub at Victoria University. Fun events to feel less homesick.</p><span class="contact">instagram.com/vivu_together</span></a>
+              </div>
+            </div>
+
+            <div class="support-group">
+              <div class="group-head">
+                <h3>Go out &amp; connect</h3>
+                <p>Social spots, gaming nights, music and karaoke to get you out of the house.</p>
+              </div>
+              <div class="grid-cards">
+                <a class="card" data-sfx="c" href="https://moondog.com.au/wild-west" target="_blank" rel="noopener"><span class="tag">Night out</span><h4>Trivia nights</h4><p>Pub trivia in groups — try the Trivia &amp; Taco night at Moon Dog Wild West, Footscray.</p><span class="contact">moondog.com.au/wild-west</span></a>
+                <a class="card" data-sfx="c" href="https://fortress.games/events-melbourne" target="_blank" rel="noopener"><span class="tag">Gaming</span><h4>Fortress Melbourne</h4><p>Gaming and pop-culture events: games nights, trivia, DJ nights and cosplay parties.</p><span class="contact">fortress.games/events-melbourne</span></a>
+                <a class="card" data-sfx="c" href="https://o3space.org/" target="_blank" rel="noopener"><span class="tag">Cafe &amp; clubs</span><h4>O3</h4><p>Study cafe with a vintage Ghibli vibe. Book, film and boardgame clubs via their app.</p><span class="contact">o3space.org</span></a>
+                <a class="card" data-sfx="c" href="https://jankara.com.au/" target="_blank" rel="noopener"><span class="tag">Night out</span><h4>Jankara Karaoke Bar</h4><p>Open-mic Japanese karaoke. Buy drinks, get song tickets, sing with new friends.</p><span class="contact">jankara.com.au</span></a>
+                <a class="card" data-sfx="c" href="https://www.facebook.com/thelastchancerockandrollbar/" target="_blank" rel="noopener"><span class="tag">Live music</span><h4>Last Chance</h4><p>Bar with local alternative bands. A welcoming community for rock, metal, emo and indie fans.</p><span class="contact">facebook.com/thelastchancerockandrollbar</span></a>
+                <a class="card" data-sfx="c" href="https://northcotesocialclub.com/" target="_blank" rel="noopener"><span class="tag">Night out</span><h4>Northcote Social Club</h4><p>Bar, food and free movie nights on a projector — a sociable way to watch films.</p><span class="contact">northcotesocialclub.com</span></a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
