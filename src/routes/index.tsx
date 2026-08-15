@@ -674,33 +674,43 @@ function Support() {
         one to a friend.
       </p>
 
-      <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {SUPPORT.map(({ name, blurb, contact, href, type, icon: Icon }) => (
-          <li key={name}>
-            <a
-              href={href}
-              target={href.startsWith("http") ? "_blank" : undefined}
-              rel={href.startsWith("http") ? "noreferrer noopener" : undefined}
-              data-sfx="c"
-              className="group flex h-full flex-col rounded-3xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_20px_50px_-25px_rgba(193,118,68,0.35)]"
-            >
-              <div className="flex items-center justify-between">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-2.5 py-1 text-[11px] uppercase tracking-wider text-secondary-foreground">
-                  <Icon className="h-3 w-3" aria-hidden="true" />
-                  {type}
-                </span>
-                <ArrowUpRight
-                  className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
-                  aria-hidden="true"
-                />
-              </div>
-              <h3 className="mt-5 font-display text-xl text-foreground">{name}</h3>
-              <p className="mt-2 flex-1 text-sm text-muted-foreground">{blurb}</p>
-              <p className="mt-5 text-sm font-medium text-accent">{contact}</p>
-            </a>
-          </li>
+      <div className="mt-14 space-y-16">
+        {SUPPORT.map((category) => (
+          <div key={category.title}>
+            <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <h3 className="font-display text-2xl text-foreground sm:text-3xl">{category.title}</h3>
+              <p className="max-w-md text-sm text-muted-foreground">{category.subtitle}</p>
+            </div>
+            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {category.items.map(({ name, blurb, contact, href, type, icon: Icon }) => (
+                <li key={name}>
+                  <a
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel={href.startsWith("http") ? "noreferrer noopener" : undefined}
+                    data-sfx="c"
+                    className="group flex h-full flex-col rounded-3xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_20px_50px_-25px_rgba(193,118,68,0.35)]"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-2.5 py-1 text-[11px] uppercase tracking-wider text-secondary-foreground">
+                        <Icon className="h-3 w-3" aria-hidden="true" />
+                        {type}
+                      </span>
+                      <ArrowUpRight
+                        className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+                        aria-hidden="true"
+                      />
+                    </div>
+                    <h4 className="mt-5 font-display text-xl text-foreground">{name}</h4>
+                    <p className="mt-2 flex-1 text-sm text-muted-foreground">{blurb}</p>
+                    <p className="mt-5 text-sm font-medium text-accent">{contact}</p>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         ))}
-      </ul>
+      </div>
     </Section>
   );
 }
