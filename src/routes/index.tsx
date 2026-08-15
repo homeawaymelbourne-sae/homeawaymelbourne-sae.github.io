@@ -50,55 +50,181 @@ const TEAM = [
   },
 ];
 
-const SUPPORT = [
+type SupportItem = {
+  name: string;
+  blurb: string;
+  contact: string;
+  href: string;
+  type: string;
+  icon: typeof Globe;
+};
+
+type SupportCategory = {
+  title: string;
+  subtitle: string;
+  items: SupportItem[];
+};
+
+const SUPPORT: SupportCategory[] = [
   {
-    name: "Study Melbourne Hub",
-    blurb:
-      "Free in-person and online support for international students — wellbeing, study, work and life in Victoria.",
-    contact: "studymelbourne.vic.gov.au",
-    href: "https://www.studymelbourne.vic.gov.au/",
-    type: "Website",
-    icon: Globe,
+    title: "Need help now?",
+    subtitle: "Crisis support and mental health services that are there when you need them.",
+    items: [
+      {
+        name: "Lifeline Australia",
+        blurb: "24/7 crisis support and suicide prevention. Free to call from anywhere in Australia.",
+        contact: "13 11 14",
+        href: "tel:131114",
+        type: "Crisis line",
+        icon: Phone,
+      },
+      {
+        name: "Beyond Blue",
+        blurb: "Free, confidential mental health support for anxiety, depression and homesickness.",
+        contact: "1300 22 4636",
+        href: "tel:1300224636",
+        type: "Helpline",
+        icon: Phone,
+      },
+      {
+        name: "headspace",
+        blurb: "Mental health support for young people aged 12–25, including international students.",
+        contact: "headspace.org.au",
+        href: "https://headspace.org.au/",
+        type: "Website",
+        icon: Globe,
+      },
+      {
+        name: "Salvation Army Melbourne Project 614",
+        blurb: "Free meals, counselling, legal help, housing info and a safe space for international students.",
+        contact: "salvationarmy.org.au/melbourne614",
+        href: "https://www.salvationarmy.org.au/melbourne614/",
+        type: "Support service",
+        icon: Globe,
+      },
+    ],
   },
   {
-    name: "Lifeline Australia",
-    blurb: "24/7 crisis support and suicide prevention services, free to call from anywhere in Australia.",
-    contact: "13 11 14",
-    href: "tel:131114",
-    type: "Crisis line",
-    icon: Phone,
+    title: "Study & student support",
+    subtitle: "Official services, university help and peer networks for international students.",
+    items: [
+      {
+        name: "Study Melbourne Hub",
+        blurb: "Victorian Government support with study spaces, events, workshops and student services.",
+        contact: "studymelbourne.vic.gov.au",
+        href: "https://studymelbourne.vic.gov.au/our-hub",
+        type: "Website",
+        icon: Globe,
+      },
+      {
+        name: "SAE Student Wellbeing",
+        blurb: "Counselling, peer support and academic care available to every SAE student.",
+        contact: "wellbeing@sae.edu.au",
+        href: "mailto:wellbeing@sae.edu.au",
+        type: "Email",
+        icon: Mail,
+      },
+      {
+        name: "SAE Student Events",
+        blurb: "Events on campus, through Slack and online — a great way to meet other students.",
+        contact: "student.sae.edu.au/events",
+        href: "https://student.sae.edu.au/events/",
+        type: "Events",
+        icon: Globe,
+      },
+      {
+        name: "Council of Intl. Students Australia",
+        blurb: "National peer-led body representing and connecting international students.",
+        contact: "cisa.edu.au",
+        href: "https://www.cisa.edu.au/",
+        type: "Community",
+        icon: Globe,
+      },
+    ],
   },
   {
-    name: "Beyond Blue",
-    blurb: "Free, confidential mental health support for anxiety, depression and homesickness.",
-    contact: "1300 22 4636",
-    href: "tel:1300224636",
-    type: "Helpline",
-    icon: Phone,
+    title: "Make friends & find your people",
+    subtitle: "Clubs, meetups and communities where you can meet like-minded people.",
+    items: [
+      {
+        name: "Meetup Melbourne",
+        blurb: "65,000+ members. Filter groups and social events by your hobbies and interests.",
+        contact: "meetup.com/find/?keywords=Melbourne",
+        href: "https://www.meetup.com/find/?source=GROUPS&keywords=Melbourne&distance=twentyFiveMiles",
+        type: "Community",
+        icon: Globe,
+      },
+      {
+        name: "Neighbourhood Houses",
+        blurb: "400+ community organisations across Victoria with affordable classes and social events.",
+        contact: "nhvic.org.au",
+        href: "https://www.nhvic.org.au/",
+        type: "Community",
+        icon: Globe,
+      },
+      {
+        name: "Vivu Together",
+        blurb: "Vietnamese interclub at Victoria University. Fun events to feel less homesick.",
+        contact: "instagram.com/vivu_together",
+        href: "https://www.instagram.com/vivu_together?igsh=MjBxMTBjNXN5Zzdz",
+        type: "Club",
+        icon: Globe,
+      },
+    ],
   },
   {
-    name: "headspace",
-    blurb: "Mental health support for young people aged 12–25, including international students.",
-    contact: "headspace.org.au",
-    href: "https://headspace.org.au/",
-    type: "Website",
-    icon: Globe,
-  },
-  {
-    name: "SAE Student Wellbeing",
-    blurb: "Counselling, peer support and academic care available to every SAE student.",
-    contact: "wellbeing@sae.edu.au",
-    href: "mailto:wellbeing@sae.edu.au",
-    type: "Email",
-    icon: Mail,
-  },
-  {
-    name: "Council of Intl. Students Australia",
-    blurb: "Peer-led national body representing and connecting international students.",
-    contact: "cisa.edu.au",
-    href: "https://www.cisa.edu.au/",
-    type: "Community",
-    icon: Globe,
+    title: "Go out & connect",
+    subtitle: "Social spots, gaming nights, music and karaoke to get you out of the house.",
+    items: [
+      {
+        name: "Trivia nights",
+        blurb: "Pub trivia in groups — try the Trivia & Taco night at Moon Dog Wild West, Footscray.",
+        contact: "moondog.com.au/wild-west",
+        href: "https://moondog.com.au/wild-west",
+        type: "Night out",
+        icon: Globe,
+      },
+      {
+        name: "Fortress Melbourne",
+        blurb: "Gaming and pop-culture events: games nights, trivia, DJ nights and cosplay parties.",
+        contact: "fortress.games/events-melbourne",
+        href: "https://fortress.games/events-melbourne",
+        type: "Gaming",
+        icon: Globe,
+      },
+      {
+        name: "O3",
+        blurb: "Study cafe with a vintage Ghibli vibe. Book, film and boardgame clubs via their app.",
+        contact: "o3space.org",
+        href: "https://o3space.org/",
+        type: "Cafe & clubs",
+        icon: Globe,
+      },
+      {
+        name: "Jankara Karaoke Bar",
+        blurb: "Open-mic Japanese karaoke. Buy drinks, get song tickets, sing with new friends.",
+        contact: "jankara.com.au",
+        href: "https://jankara.com.au/",
+        type: "Night out",
+        icon: Globe,
+      },
+      {
+        name: "Last Chance",
+        blurb: "Bar with local alternative bands. A welcoming community for rock, metal, emo and indie fans.",
+        contact: "facebook.com/thelastchancerockandrollbar",
+        href: "https://www.facebook.com/thelastchancerockandrollbar/",
+        type: "Live music",
+        icon: Globe,
+      },
+      {
+        name: "Northcote Social Club",
+        blurb: "Bar, food and free movie nights on a projector — a sociable way to watch films.",
+        contact: "northcotesocialclub.com",
+        href: "https://northcotesocialclub.com/",
+        type: "Night out",
+        icon: Globe,
+      },
+    ],
   },
 ];
 
