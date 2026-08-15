@@ -117,7 +117,7 @@ const SUPPORT: SupportCategory[] = [
         icon: Globe,
       },
       {
-        name: "SAE Counsellor",
+        name: "SAE Student Counsellor",
         blurb: "Counselling, peer support and academic care available to every SAE student.",
         contact: "will.nelson@sae.edu.au",
         href: "mailto:will.nelson@sae.edu.au",
